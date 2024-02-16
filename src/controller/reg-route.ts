@@ -42,7 +42,7 @@ export function regRoute(controller: Controller, route: Route) {
 
     // Final handler
     async (context: MWContext, next) => {
-      context.body = await handler(context.state, undefined);
+      context.body = await handler(context.state, context);
       context.terminated = true;
       return next();
     },

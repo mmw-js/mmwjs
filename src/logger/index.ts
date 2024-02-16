@@ -26,7 +26,7 @@ let innerLogger = fromPairs(
 const proxyLogger = new Proxy(
   {},
   {
-    get(target: never, p: string): any {
+    get(target: never, p: keyof MMWLogger): any {
       return innerLogger[p];
     },
   },

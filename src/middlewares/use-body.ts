@@ -5,9 +5,9 @@ import { Pipe } from '../pipe';
 // TODO swagger annotation
 
 export function useAsyncBody<C = any>(
-  pipe?: Pipe<any, Promise<C>>,
+  pipe: Pipe<any, Promise<C>>,
 ): RMiddleware<any, { body: Promise<C> }> {
-  const fn = pipe ?? identity;
+  const fn = pipe;
   return (state, ctx) => ({ body: fn(ctx.request.body) });
 }
 
@@ -15,5 +15,5 @@ export function useBody<C = any>(
   pipe?: Pipe<any, C>,
 ): RMiddleware<any, { body: Awaited<C> }> {
   const fn = pipe ?? identity;
-  return async (state, ctx) => ({ body: await fn(ctx.request.body) });
+  return async (state, ctx) => ({ body: (await fn(ctx.request.body)) as any });
 }

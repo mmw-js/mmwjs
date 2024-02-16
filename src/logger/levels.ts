@@ -8,6 +8,8 @@ export const defaultLevels = [
   'error',
 ] as const;
 
+export type LogLevel = (typeof defaultLevels)[number];
+
 export const levelColors = {
   debug: chalk.gray,
   verbose: chalk.black,

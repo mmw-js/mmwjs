@@ -22,7 +22,7 @@ export function createPipe<I, O>(fn: PipeOrFn<I, O>): Pipe<I, O> {
     } as Pipe;
 
     fn.add = function (pipe: Pipe | Fn) {
-      return addPipe.bind(this)(pipe);
+      return addPipe.bind(this)(pipe) as Pipe;
     };
 
     return fn;

@@ -23,7 +23,7 @@ export function validationPipe(
     });
   } else {
     return createPipe(async (obj: any) => {
-      const validateObj = new schema();
+      const validateObj: Record<string, any> = new schema();
       for (const key in obj) {
         validateObj[key] = obj[key];
       }

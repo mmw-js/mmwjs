@@ -2,11 +2,11 @@ import { MMWLogMeta } from './log-meta.interface';
 import winston from 'winston';
 import process from 'process';
 import { DateTime } from 'luxon';
-import { levelColors } from './levels';
+import { levelColors, LogLevel } from './levels';
 
 type LogType = {
   message: string;
-  level: string;
+  level: LogLevel;
   timestamp: string;
 } & MMWLogMeta;
 

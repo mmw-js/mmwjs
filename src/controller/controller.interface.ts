@@ -4,7 +4,7 @@ import { Path, Rewrite, StrongPath } from '../core';
 
 export interface Controller<State = object> {
   router: Router;
-  path: Path;
+  path?: Path;
   middlewares: RMiddleware<any, any>[];
 
   use<V>(fn: RMiddleware<State, V>): Controller<Rewrite<State, V>>;

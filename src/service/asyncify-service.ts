@@ -18,12 +18,12 @@ export function asyncifyService<K extends string, V, S = Record<K, V>>(
   ...awaits: AsyncService<any>[]
 ): AsyncifyObject<S> {
   let fulfilled = every(awaits, (s) => s.status === 'fulfilled');
-  let promise = null;
+  let promise: Promise<void> | null = null;
 
   if (!fulfilled) {
-    promise = Promise.all(awaits.map((s) => s.setup)).then(
-      () => (fulfilled = true),
-    );
+    promise = Promise.all(awaits.map((s) => s.setup)).then(() => {
+      fulfilled = true;
+    });
   }
 
   return {

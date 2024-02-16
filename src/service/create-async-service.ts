@@ -17,11 +17,11 @@ export function createAsyncService<T>(fn: () => Promise<T>): AsyncService<T> {
   };
 
   srv.setup
-    .then((value) => {
-      srv.instance = value;
-      srv._get = (key) => srv.instance[key];
+    .then((instance) => {
+      srv.instance = instance;
+      srv._get = (key) => instance[key];
       srv._set = (key, value) => {
-        srv.instance[key] = value;
+        instance[key] = value;
         return true;
       };
       srv.status = 'fulfilled';

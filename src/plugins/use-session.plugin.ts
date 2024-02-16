@@ -7,6 +7,7 @@ export function useSessionPlugin(
 ): AppPlugin {
   return (app) => {
     app.kapp.keys = keys;
-    app.kapp.use(session(config, app.kapp));
+    if (config) app.kapp.use(session(config, app.kapp));
+    else app.kapp.use(session(app.kapp));
   };
 }

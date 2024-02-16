@@ -1,32 +1,31 @@
 import { MWContext, RMiddleware } from '../route';
 import { createPipe, PipeOrFn } from '../pipe';
 import { identity, isFunction, isString } from 'lodash';
-import { RouterContext } from 'koa-router';
 
 export function useQuery<const K extends string>(
   key: K,
-): RMiddleware<any, Record<K, string | string[]>>;
+): RMiddleware<any, Record<K, string | string[] | undefined>>;
 
 export function useQuery<const K extends string, T = string>(
   key: K,
-  pipe: PipeOrFn<string | string[], T>,
+  pipe: PipeOrFn<string | string[] | undefined, T>,
 ): RMiddleware<any, Record<K, Awaited<T>>>;
 
 export function useQuery<const K extends string>(
   key: K,
   paramKey: string,
-): RMiddleware<any, Record<K, string | string[]>>;
+): RMiddleware<any, Record<K, string | string[] | undefined>>;
 
 export function useQuery<const K extends string, T = string>(
   key: K,
   paramKey: string,
-  pipe: PipeOrFn<string | string[], T>,
+  pipe: PipeOrFn<string | string[] | undefined, T>,
 ): RMiddleware<any, Record<K, Awaited<T>>>;
 
 export function useQuery(
   key: string,
-  paramOrPipe?: string | PipeOrFn<string | string[], any>,
-  pipe?: PipeOrFn<string | string[], any>,
+  paramOrPipe?: string | PipeOrFn<string | string[] | undefined, any>,
+  pipe?: PipeOrFn<string | string[] | undefined, any>,
 ) {
   const paramKey = isString(paramOrPipe) ? paramOrPipe : key;
   const transform = createPipe(
