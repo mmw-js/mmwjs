@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node dev/app.ts",
+    "bun-dev": "bun --hot dev/app.ts",
     "ts-dev": "tsc --watch --noEmit",
-    "swc-dev": "node -r @swc-node/register --watch ./dev/app.ts",
-    "dev": "npm-run-all --parallel ts-dev swc-dev"
+    "dev": "npm-run-all --parallel ts-dev bun-dev"
   },
   "dependencies": {
     "@koa/multer": "^3.0.2",
