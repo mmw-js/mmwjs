@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "bun-dev": "bun --hot dev/app.ts",
-    "ts-dev": "tsc --watch --noEmit",
+    "ts-dev": "tsc --watch --noEmit --preserveWatchOutput",
     "dev": "npm-run-all --parallel ts-dev bun-dev"
   },
   "dependencies": {
